@@ -11,6 +11,7 @@ const userRegisterSchema = mongoose.Schema({
     },mobileno:{
         type:String,
         lowercase:true,
+        required:true,
         unique:true,
     },address:{
         type:String,
@@ -22,9 +23,6 @@ const userRegisterSchema = mongoose.Schema({
         type:String,
         lowercase:true,
     },deviceid:{
-        type:String,
-        lowercase:true,
-    },location:{
         type:String,
         lowercase:true,
     },logtime:{
