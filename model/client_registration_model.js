@@ -28,6 +28,9 @@ const userRegisterSchema = mongoose.Schema({
     },logtime:{
         type:String,
         lowercase:true,
+    },registrationlocation:{
+        type:String,
+        lowercase:true,
     }
 })
 
