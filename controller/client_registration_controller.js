@@ -1,6 +1,7 @@
 // const { use } = require('bcrypt/promises');
 const { json } = require('express');
 const UserRegisterServiceClass = require('../service/client_registration_service');
+const jwt = require('jsonwebtoken');
 
 exports.userRegistrationController =async(req,res,next)=>{
     try{
@@ -18,18 +19,28 @@ exports.userRegistrationController =async(req,res,next)=>{
 exports.login =async(req,res,next)=>{
     try {
         const {email,password} = req.body;
-        console.log('password---'+password);
+        // console.log('password---'+password);
         const user =await UserRegisterServiceClass.checkUser(email);
-        console.log('Email---'+email);
-        const isMatch =await user.comparePassword(password);
+        console.log('Input Email---'+email);
+        // const isMatch =await user.comparePassword(password);
         if (!user) {
             console.log("user Invalid");
-            res.json({status:"201",success:"Fail", message:'invalid Email Address'});
-        }else if(!isMatch){
-            console.log("Password Invalid");
-            res.json({status:"201",success:"Fail", message:'Password Invalid'});
+            return res.json({status:"201",success:"Fail", message:'invalid Email Address'});
+        }
+        const isMatch = await user.comparePassword(password);
+        if (isMatch) {
+            const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
+            console.log("Json:");
+            return res.json({ status: "200", success: "success", message: 'Login Success',token,
+            user: {
+                email: user.email,
+                customername: user.customername,
+                mobileno:user.mobileno,
+            }
+            
+        });
         } else {
-            res.json({status:"200",success:"success", message:'Login Success'});
+            return res.json({ status: "201", success: "Fail", message: 'Password Invalid' });
         }
     } catch (error) {
         console.log(error);

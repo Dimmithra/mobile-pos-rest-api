@@ -21,7 +21,6 @@ const userRegisterSchema = mongoose.Schema({
         lowercase:true,
     },password:{
         type:String,
-        lowercase:true,
     },deviceid:{
         type:String,
         lowercase:true,
@@ -34,22 +33,32 @@ const userRegisterSchema = mongoose.Schema({
     }
 })
 
-userRegisterSchema.pre('save',async function(){
+userRegisterSchema.pre('save',async function(next){
     try {
         var password = this;
         const salt = await(bcrypt.genSalt(10));
-        const hasBlood = await bcrypt.hash(password.password,salt);
-
-        password.password=hasBlood;
+        const hashedPassword = await bcrypt.hash(password.password,salt);
+        password.password=hashedPassword;
+        next();
     } catch (error) {
         console.log(error);
     }
 })
 
-//password compare
-userRegisterSchema.methods.comparePassword = async function(userPassword){
+//password compare 
+userRegisterSchema.methods.comparePassword = async function (userPassword) {
     try {
-        const isMatch =await bcrypt.compare(userPassword,this.password);
+        console.log('Input Password:', userPassword);
+        if (!this.password || !userPassword) {
+            console.log('Stored Hashed Password or Input Password is undefined');
+            return false;
+        }
+        const storedPasswordString = String(this.password);
+        const userPasswordString = String(userPassword);
+
+        const isMatch = await bcrypt.compare(userPasswordString, storedPasswordString);
+
+        console.log('Password Match Result:', isMatch);
         return isMatch;
     } catch (error) {
         throw error;
