@@ -1,7 +1,7 @@
 const {Double}= require('mongoose');
 const mongoose = require('mongoose');
 const db = require('../config/data_base_config');
-const bycrypt =require("bcrypt");
+const bcrypt =require("bcrypt");
 const {Schema} = mongoose;
 
 const userRegisterSchema = mongoose.Schema({
@@ -37,14 +37,24 @@ const userRegisterSchema = mongoose.Schema({
 userRegisterSchema.pre('save',async function(){
     try {
         var password = this;
-        const salt = await(bycrypt.genSalt(10));
-        const hasBlood = await bycrypt.hash(password.password,salt);
+        const salt = await(bcrypt.genSalt(10));
+        const hasBlood = await bcrypt.hash(password.password,salt);
 
         password.password=hasBlood;
     } catch (error) {
         console.log(error);
     }
 })
+
+//password compare
+userRegisterSchema.methods.comparePassword = async function(userPassword){
+    try {
+        const isMatch =await bcrypt.compare(userPassword,this.password);
+        return isMatch;
+    } catch (error) {
+        throw error;
+    }
+}
 
 const userRegModel = db.model('customer_table',userRegisterSchema);
 module.exports=userRegModel;

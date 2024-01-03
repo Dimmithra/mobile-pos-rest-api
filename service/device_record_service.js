@@ -10,6 +10,7 @@ class DeviceRecordClass{
             throw error;
         }
     }
+    
 }
 
 module.exports = DeviceRecordClass;

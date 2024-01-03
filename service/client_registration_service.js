@@ -11,6 +11,13 @@ class UserRegisterServiceClass{
                throw error;
         }
     }
+    static async checkUser(email){
+        try {
+            return await userRegModel.findOne({email});
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = UserRegisterServiceClass;
