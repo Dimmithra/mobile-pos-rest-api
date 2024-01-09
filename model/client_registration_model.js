@@ -30,6 +30,9 @@ const userRegisterSchema = mongoose.Schema({
     },registrationlocation:{
         type:String,
         lowercase:true,
+    },clienttype:{
+        type:String,
+        lowercase:true,
     }
 })
 

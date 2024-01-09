@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 
 exports.userRegistrationController =async(req,res,next)=>{
     try{
-        const {customername,mobileno,address,email,password,deviceid,logtime,registrationlocation} = req.body;
-        let sussessRes =await UserRegisterServiceClass.userRegRequest(customername,mobileno,address,email,password,deviceid,logtime,registrationlocation);
+        const {customername,mobileno,address,email,password,deviceid,logtime,registrationlocation,clienttype} = req.body;
+        let sussessRes =await UserRegisterServiceClass.userRegRequest(customername,mobileno,address,email,password,deviceid,logtime,registrationlocation,clienttype);
         console.log('Customer Registration success');
         console.log(req.body);
         res.json({status:"200",success:"Success", message:"Thank You! Your Registration Process Success"});
@@ -31,13 +31,13 @@ exports.login =async(req,res,next)=>{
         if (isMatch) {
             const token = jwt.sign({ userId: user._id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
             console.log("Json:");
-            return res.json({ status: "200", success: "success", message: 'Login Success',token,
+            return res.json({ status: "200", success: "success", message: "Login Success",token,
             user: {
                 email: user.email,
                 customername: user.customername,
                 mobileno:user.mobileno,
+                clienttype:user.clienttype,
             }
-            
         });
         } else {
             return res.json({ status: "201", success: "Fail", message: 'Password Invalid' });
