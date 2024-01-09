@@ -17,7 +17,6 @@ const deviceRecSchema = mongoose.Schema({
         type:String,
     },cus_code:{
         type:String,
-       
     },logign_status:{
         type:String,  
     }
