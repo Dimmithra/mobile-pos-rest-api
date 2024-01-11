@@ -9,5 +9,6 @@ router.post('/devicerecord',deviceRegController.deviceRecordController);
 router.post('/login',userRegController.login);
 router.post('/itemsave',itemController.itemeRecodeController);
 router.get('/getItem',itemController.getItemsRecordsController);
+router.get('/getAllItemRecord',itemController.getAllItems);
 
 module.exports = router;

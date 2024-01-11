@@ -10,11 +10,20 @@ class ItemRecodeClass{
             throw error;
         }
     } 
+    //get item data - item name
     static async itemDetail(itemname){
         try {
             return await itemRecModel.findOne({itemname});
         } catch (error) {
             console.log(error);
+        }
+    }
+    // get all item data
+    static async getAllItemData(){
+        try {
+            return await itemRecModel.find();
+        } catch (error) {
+            conste.log(error);
         }
     }
    

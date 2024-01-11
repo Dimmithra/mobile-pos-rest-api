@@ -20,12 +20,27 @@ exports.itemeRecodeController =async(req,res,next)=>{
 }
 
 
-//search item data 
+//search item data  = itemname
 exports.getItemsRecordsController =async(req,res,next)=>{
     try {
         const {itemname} =req.body;
         const itemRec = await ItemRecodeClass.itemDetail(itemname);
         if (itemRec === null) {
+            return res.json({status:"201",success:"Fail", message:'No Record found'});
+        }
+            return res.json({status:"200",success:"success", message:'Record Founded' ,data:itemRec});
+    } catch (error) {
+        res.json({status:"201",success:"error", message:error});
+
+    }
+}
+
+//get all item data
+exports.getAllItems =async(req,res,next)=>{
+    try {
+        const {itemname} =req.body;
+        const itemRec = await ItemRecodeClass.getAllItemData(itemname);
+        if (itemRec === '') {
             return res.json({status:"201",success:"Fail", message:'No Record found'});
         }
             return res.json({status:"200",success:"success", message:'Record Founded' ,data:itemRec});
