@@ -10,7 +10,7 @@ const itemDetailsSchema = mongoose.Schema({
         required:true,
     },itemcode:{
         type:String,
-        unique:true,
+        // unique:true,
         required:true,
         default: generateItemCode,
     },itemdescription:{
@@ -23,7 +23,17 @@ const itemDetailsSchema = mongoose.Schema({
         type:String,
     },expdate:{
         type:String,
-    }
+    },discount_available:{
+        type:Boolean,
+    },discountrate:{
+        type:String,
+    },discountprice:{
+        type:String,
+    },dicount_issu_date:{
+        type:String,
+    },dicount_expired_date:{
+        type:String,
+    },
 })
 
 function generateItemCode() {
