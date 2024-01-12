@@ -7,7 +7,8 @@ class ItemRecodeClass{
             return await itemRecSave.save();
         } catch (error) {
             console.log("Item Record Error" +error);
-            throw error;
+            // throw error;
+            return error;
         }
     } 
     //get item data - item name

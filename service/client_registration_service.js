@@ -7,7 +7,8 @@ class UserRegisterServiceClass{
                 return await createUserRegistration.save();
         }catch(error){
                console.log("User Reg Serveicer:"+error); 
-               throw error;
+            //    throw error;
+            return error;
         }
     }
     static async checkUser(email){

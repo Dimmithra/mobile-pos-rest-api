@@ -64,7 +64,8 @@ userRegisterSchema.methods.comparePassword = async function (userPassword) {
         console.log('Password Match Result:', isMatch);
         return isMatch;
     } catch (error) {
-        throw error;
+        // throw error;
+        return error;
     }
 }
 
