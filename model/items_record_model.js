@@ -4,6 +4,10 @@ const db = require('../config/data_base_config');
 const {Schema} = mongoose;
 
 const itemDetailsSchema = mongoose.Schema({
+    company_name:{
+        type:String,
+        required:true,
+    },
     itemname:{
         type:String,
         unique:true,
@@ -29,7 +33,10 @@ const itemDetailsSchema = mongoose.Schema({
         type:String,
     },discountprice:{
         type:String,
-    },dicount_issu_date:{
+    },new_market_price:{
+        type:String,
+    },
+    dicount_issu_date:{
         type:String,
     },dicount_expired_date:{
         type:String,
