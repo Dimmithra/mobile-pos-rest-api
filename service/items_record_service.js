@@ -12,9 +12,20 @@ class ItemRecodeClass{
         }
     } 
     //get item data - item name
-    static async itemDetail(itemname){
+    static async itemDetail(itemname,company_name,itemcode){
         try {
-            return await itemRecModel.findOne({itemname});
+            let query ={};
+            if (itemname) {
+                query.itemname = itemname;
+            }else if(company_name){
+                query.company_name =company_name;
+            } else if(itemcode){
+                query.itemcode = itemcode;
+            } 
+            else {
+                return 'No record Founded';
+            }
+            return await itemRecModel.find(query);
         } catch (error) {
             console.log(error);
         }

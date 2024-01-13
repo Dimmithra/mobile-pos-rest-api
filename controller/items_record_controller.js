@@ -18,11 +18,11 @@ exports.itemeRecodeController =async(req,res,next)=>{
 }
 
 
-//search item data  = itemname
+//search item data  = itemname/company name / item no
 exports.getItemsRecordsController =async(req,res,next)=>{
     try {
-        const {itemname} =req.body;
-        const itemRec = await ItemRecodeClass.itemDetail(itemname);
+        const {itemname,company_name,itemcode} =req.body;
+        const itemRec = await ItemRecodeClass.itemDetail(itemname,company_name,itemcode);
         if (itemRec === null) {
             return res.json({status:"201",success:"Fail", message:'No Record found'});
         }

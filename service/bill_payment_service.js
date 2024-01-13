@@ -28,6 +28,11 @@ class BillPaymentClass {
             else{
                 return 'Enter Valid Bill number or Email Address';
             }
+
+            if (result.length ===  
+                0) {
+                return 'No matching records found.';
+            }
             return await billRecModel.find(query);
         } catch (error) {
             console.log(error);
