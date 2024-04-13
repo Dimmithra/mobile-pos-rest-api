@@ -40,7 +40,9 @@ const itemDetailsSchema = mongoose.Schema({
         type:String,
     },dicount_expired_date:{
         type:String,
-    },
+    },image_url:{
+        type:String,
+    }
 })
 
 function generateItemCode() {

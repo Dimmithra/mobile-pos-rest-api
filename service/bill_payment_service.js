@@ -13,7 +13,7 @@ class BillPaymentClass {
     //get Bill Data
     static async billDetils(bill_no,cus_email){
         try {
-            // return await billRecModel.find({bill_no,cus_email});
+            // return await billRecModel.find({b ill_no,cus_email});
             let query = {};
 
             if (bill_no) {

@@ -5,8 +5,8 @@ const ItemRecodeClass =require("../service/items_record_service");
 exports.itemeRecodeController =async(req,res,next)=>{
     try {
         // const item =await ItemRecodeClass.itemDetail(itemname);
-        const {company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date}=req.body;
-        let successres =await ItemRecodeClass.itemRecRequest(company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date);
+        const {company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date,image_url}=req.body;
+        let successres =await ItemRecodeClass.itemRecRequest(company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date,image_url);
         console.log('New Product Create Success');
         console.log(req.body);
         res.json({status:"200",success:"Success", message:"New Product Create Success"});

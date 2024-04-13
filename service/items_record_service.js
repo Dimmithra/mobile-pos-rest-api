@@ -1,9 +1,9 @@
 const itemRecModel = require('../model/items_record_model');
 
 class ItemRecodeClass{
-    static async itemRecRequest(company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date){
+    static async itemRecRequest(company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date,image_url){
         try {
-            const itemRecSave = new itemRecModel({company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date});
+            const itemRecSave = new itemRecModel({company_name,itemname,itemcode,itemdescription,quantity,unitprice,manifectdate,expdate,discount_available,discountrate,discountprice,new_market_price,dicount_issu_date,dicount_expired_date,image_url});
             return await itemRecSave.save();
         } catch (error) {
             console.log("Item Record Error" +error);
