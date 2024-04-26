@@ -15,5 +15,8 @@ router.post('/getAllItemRecord',itemController.getAllItems);
 router.post('/billPayment',saveBillController.saveBillRecords);
 router.get('/getbillRecord',saveBillController.getBillRecord);
 router.post('/createPromotion',promotionController.promoRecordeController);
+router.post('/getAllPromotionRecord',promotionController.getAllPromotionRecords);
+//Delete Item
+router.post('/deleteItem',itemController.deleteItemData);
 
 module.exports = router;

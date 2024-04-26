@@ -12,6 +12,7 @@ const promotionSchema = mongoose.Schema({
     },
     promotion_code:{
         type:String,
+        required:true,
         default:generataPromotionCode,
     },
     discription:{
@@ -20,9 +21,6 @@ const promotionSchema = mongoose.Schema({
     promotion_date:{
         type:String,
     },
-    other_comments:{
-        type:String,
-    }
 })
 
 function generataPromotionCode() {

@@ -38,6 +38,23 @@ class ItemRecodeClass{
             conste.log(error);
         }
     }
+    //delet Item
+    static async deleteSelectedItem(itemcode){
+        try {
+            let query = {};
+            if (itemcode) {
+                query.itemcode = itemcode;
+            }else {
+                return 'Delete  Fail';
+            }
+            return await itemRecModel.deleteOne(query);
+            // itemRecModel.deleteOne().;
+        } catch (error) {
+            conste.log(error);
+        }
+       
+    }
+    
    
 }
 module.exports =ItemRecodeClass;

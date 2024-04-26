@@ -47,3 +47,18 @@ exports.getAllItems =async(req,res,next)=>{
 
     }
 }
+
+//delete selected items
+exports.deleteItemData =async(req,res,next)=>{
+    try {
+        const {itemcode} =req.body;
+        const itemRec = await ItemRecodeClass.deleteSelectedItem(itemcode);
+        if (itemRec === null) {
+            return res.json({status:"201",success:"Fail", message:'Invailde Product Code'});
+        }
+            return res.json({status:"200",success:"success", message:'Delete Success'});
+    } catch (error) {
+        res.json({status:"201",success:"error", message:error});
+
+    }
+}

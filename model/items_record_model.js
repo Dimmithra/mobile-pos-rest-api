@@ -14,9 +14,8 @@ const itemDetailsSchema = mongoose.Schema({
         required:true,
     },itemcode:{
         type:String,
-        // unique:true,
         required:true,
-        default: generateItemCode,
+        default:generateItemCode,
     },itemdescription:{
         type:String,
     },quantity:{
@@ -46,7 +45,8 @@ const itemDetailsSchema = mongoose.Schema({
 })
 
 function generateItemCode() {
-    return 'item' + Date.now().toString(36) + Math.random().toString(36).substr(4, 5);
+    // const randomPart = Math.random().toString().substr(2, 4);
+    return 'ProduCode-' + Math.random().toString(36).substr(4, 5);
 }
 const itemRecModel =db.model('items_record',itemDetailsSchema);
 module.exports=itemRecModel;
