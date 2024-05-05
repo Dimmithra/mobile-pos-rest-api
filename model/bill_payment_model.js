@@ -1,50 +1,66 @@
-const {Double} =require('mongoose');
+const { Double } = require('mongoose');
 const mongoose = require('mongoose');
 const db = require('../config/data_base_config');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const billepaymentSchema = mongoose.Schema({
-    cus_email:{
-        type:String,
-        lowercase:true,
+    cus_email: {
+        type: String,
+        lowercase: true,
     },
-    cus_refno:{
-        type:String,
+    cus_mobileno: {
+        type: String,
     },
-    cus_name:{
-        type:String,
+    cus_name: {
+        type: String,
     },
-    date_time:{
-        type:String,
+    date_time: {
+        type: String,
         default: new Date().toISOString(),
     },
-    itemcount:{
-        type:String,
+    itemcount: {
+        type: String,
     },
-    item:[
-       {
-            name:{
-                type:String
+    item: [
+        {
+            itemcode: {
+                type: String
             },
-            qty:{
-                type:String
+            name: {
+                type: String
             },
-            amount:{
-                type:String
+            qty: {
+                type: String
+            },
+            amount: {
+                type: String
+            },
+            discount_price: {
+                type: String
+            },
+            itemTotal: {
+                type: String
             },
         },
-    ],total_amount:{
-        type:String,
-    },bill_no:{
-        type:String,
-        default:billNumberGenerate()
+    ], total_amount: {
+        type: String,
+    }, tdiscount_amount: {
+        type: String,
+    }, subtotal: {
+        type: String,
+    },
+    bill_no: {
+        type: String,
+        required:true,
+        default: billNumberGenerate
     }
 })
 
 
 function billNumberGenerate() {
-    return 'BILL' + Date.now().toString(4) + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-}  
+    return 'BILLID' + Math.random().toString(36).substr(5, 8);
+    // return 'BILLID' + Math.random().toString(36).substr(3, 5);
+}
 
 // billPaymentSchema.pre('save', function (next) {
 //     const currentDate = new Date().toISOString();
@@ -52,5 +68,5 @@ function billNumberGenerate() {
 //     next();
 // });
 
-const billRecModel =db.model('bill_records',billepaymentSchema);
+const billRecModel = db.model('bill_records', billepaymentSchema);
 module.exports = billRecModel;

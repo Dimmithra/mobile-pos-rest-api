@@ -2,9 +2,9 @@ const BillPaymentClass = require('../service/bill_payment_service');
 
  exports.saveBillRecords =async(req,res,next)=>{
     try {
-        const {cus_email,cus_refno,cus_name,date_time,itemcount,item,total_amount,bill_no} = req.body;
+        const {cus_email,cus_mobileno,cus_name,date_time,itemcount,item,total_amount,tdiscount_amount,subtotal,bill_no} = req.body;
         // const billNumber = await billNumberGenerate();
-        let successBill =await BillPaymentClass.billPaymentRequest(cus_email,cus_refno,cus_name,date_time,itemcount,item,total_amount,bill_no);
+        let successBill =await BillPaymentClass.billPaymentRequest(cus_email,cus_mobileno,cus_name,date_time,itemcount,item,total_amount,tdiscount_amount,subtotal,bill_no);
         console.log('New bill payment Success');
         console.log(req.body);
         // const billRecord =await BillPaymentClass.billDetils(bill_no);

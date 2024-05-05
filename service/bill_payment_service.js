@@ -1,9 +1,9 @@
 const billRecModel =require('../model/bill_payment_model');
 
 class BillPaymentClass {
-    static async billPaymentRequest(cus_email,cus_refno,cus_name,date_time,itemcount,item,total_amount,bill_no){
+    static async billPaymentRequest(cus_email,cus_mobileno,cus_name,date_time,itemcount,item,total_amount,tdiscount_amount,subtotal,bill_no){
         try {
-            const saveBillPayment = new billRecModel({cus_email,cus_refno,cus_name,date_time,itemcount,item,total_amount,bill_no});
+            const saveBillPayment = new billRecModel({cus_email,cus_mobileno,cus_name,date_time,itemcount,item,total_amount,tdiscount_amount,subtotal,bill_no});
             return await saveBillPayment.save();
         } catch (error) {
             console.log(error);
