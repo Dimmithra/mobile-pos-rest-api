@@ -13,7 +13,7 @@ router.post('/itemsave',itemController.itemeRecodeController);
 router.post('/getItem',itemController.getItemsRecordsController);
 router.post('/getAllItemRecord',itemController.getAllItems);
 router.post('/billPayment',saveBillController.saveBillRecords);
-router.get('/getbillRecord',saveBillController.getBillRecord);
+router.post('/getbillRecord',saveBillController.getBillRecord);
 router.post('/createPromotion',promotionController.promoRecordeController);
 router.post('/getAllPromotionRecord',promotionController.getAllPromotionRecords);
 //Delete Item

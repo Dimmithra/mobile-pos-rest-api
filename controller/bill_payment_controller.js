@@ -18,12 +18,12 @@ const BillPaymentClass = require('../service/bill_payment_service');
 //search bill record email/bill no
 exports.getBillRecord =async(req,res,next)=>{
     try {
-        const {bill_no,cus_email} = req.body;
+        const {bill_no,cus_email,cus_mobileno} = req.body;
         console.log(req.body)
-        const billRec = await BillPaymentClass.billDetils(bill_no,cus_email);
-        // if (!billRec ||billRec.length === 0) {
-        //     return res.json({status:"200",success:"success", message:'email No or Bill Number cannot be blank'});
-        // }
+        const billRec = await BillPaymentClass.billDetils(bill_no,cus_email,cus_mobileno);
+        if (billRec == null) {
+            return res.json({status:"200",success:"success", message:'email No or Bill Number cannot be blank'});
+        }
         return res.json({status:"200",success:"success", message:'Record Founded' ,data:billRec});
     } catch (error) {
         console.log(error);

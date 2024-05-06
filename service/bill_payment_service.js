@@ -11,7 +11,7 @@ class BillPaymentClass {
         }
     }
     //get Bill Data
-    static async billDetils(bill_no,cus_email){
+    static async billDetils(bill_no,cus_email,cus_mobileno){
         try {
             // return await billRecModel.find({b ill_no,cus_email});
             let query = {};
@@ -20,7 +20,9 @@ class BillPaymentClass {
                 query.bill_no = bill_no;
             } else if (cus_email) {
                 query.cus_email = cus_email;
-            } 
+            } else if (cus_mobileno) {
+                query.cus_mobileno = cus_mobileno;
+            }
             // else if((query.bill_no && query.bill_no.trim() === '') || (query.cus_email && query.cus_email.trim() === '')){
             //     return 'email or bill number cannot be blank';
             //     // throw new Error('Provide either bill_no or cus_email');
@@ -29,10 +31,10 @@ class BillPaymentClass {
                 return 'Enter Valid Bill number or Email Address';
             }
 
-            if (result.length ===  
-                0) {
-                return 'No matching records found.';
-            }
+            // if (result.length ===  
+            //     0) {
+            //     return 'No matching records found.';
+            // }
             return await billRecModel.find(query);
         } catch (error) {
             console.log(error);
