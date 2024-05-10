@@ -9,7 +9,7 @@ exports.sendNewChatMessage=async(req,res,next)=>{
     
     } catch (error) {
         console.log(error);
-        res.json({status:"201",success:"fail", message:"Bill payment fail"});
+        res.json({status:"201",success:"fail", message:"Message Send fail"});
 
     }
 
@@ -19,9 +19,10 @@ exports.getAllMessageRecords =async(req,res,next)=>{
     try {
         const {} =req.body;
         const chatRecord = await ChatDataClass.getAllChatRecords();
-        if (chatRecord === null) {
+        if (chatRecord === null ) {
             return res.json({status:"201",success:"Fail", message:'No Chat found'});
         }
+        
             return res.json({status:"200",success:"success", message:'Record Founded' ,data:chatRecord});
     } catch (error) {
         res.json({status:"201",success:"error", message:error});
