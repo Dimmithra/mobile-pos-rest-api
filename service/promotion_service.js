@@ -17,6 +17,20 @@ class PromotionClass{
             conste.log(error);
         }
     }
+    //Delete Promotion
+    static async deletePromotioRec(promotion_code){
+        try {
+          let query = {};
+          if (promotion_code) {
+            query.promotion_code = promotion_code;
+          }else{
+            return 'Delete Fail';
+          }
+          return await promotionModel.deleteOne(query);
+        } catch (error) {
+            conste.log(error);
+        }
+    }
 }
 
 module.exports =PromotionClass;

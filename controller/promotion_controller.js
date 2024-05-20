@@ -26,3 +26,19 @@ exports.getAllPromotionRecords =async(req,res,next)=>{
 
     }
 }
+
+//delete Promotiom
+exports.deletePromotionRec =async(req,res,next)=>{
+    try {
+        const {promotion_code} =req.body;
+        console.log(req.body);
+        const promoRec = await PromotionClass.deletePromotioRec(promotion_code);
+        if (promoRec === null) {
+            return res.json({status:"201",success:"Fail", message:'Invailde Promotion Selected'});
+        }
+            return res.json({status:"200",success:"success", message:'Delete Success'});
+    } catch (error) {
+        res.json({status:"201",success:"error", message:error});
+
+    }
+}

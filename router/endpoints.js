@@ -17,6 +17,7 @@ router.post('/billPayment',saveBillController.saveBillRecords);
 router.post('/getbillRecord',saveBillController.getBillRecord);
 router.post('/createPromotion',promotionController.promoRecordeController);
 router.post('/getAllPromotionRecord',promotionController.getAllPromotionRecords);
+router.post('/deletePromo',promotionController.deletePromotionRec);
 //Delete Item
 router.post('/deleteItem',itemController.deleteItemData);
 //send Chat message
